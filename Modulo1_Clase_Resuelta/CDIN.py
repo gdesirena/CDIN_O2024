@@ -28,7 +28,7 @@ class CDIN:
         return self.col_cualitativos, df_cuali
     
     def get_cuantitativos(self):
-        df_cuanti = df.select_dtypes(include=['number']).copy()
+        df_cuanti = self.df.select_dtypes(include=['number']).copy()
         self.col_cuantitativos = df_cuanti.columns
         return self.col_cuantitativos, df_cuanti
     
