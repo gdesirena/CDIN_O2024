@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import string
+import scipy.spatial.distance as sc
 
 class CDIN:
     def __init__(self,df):
@@ -79,7 +80,7 @@ class CDIN:
     @staticmethod
     def lowercase_text(x):
         try:
-            x=x.lowe()
+            x=x.lower()
         except:
             pass
         return x
@@ -131,4 +132,10 @@ class CDIN:
 
 
         return columns.join(data_dtypes).join(missing_values).join(present_values).join(unique_values).join(lista_unique_values).join(max_values).join(min_values)
-    
+    @staticmethod
+    def pdistance_matrix(df, metric):
+        '''
+        Este método obtiene la matriz de similitud de los datos en df, utilizando la métrica descrita en metric
+        '''
+        D1 = sc.squareform(sc.pdist(df.values,metric))
+        return pd.DataFrame(D1)
